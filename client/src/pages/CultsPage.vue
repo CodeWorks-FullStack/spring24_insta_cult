@@ -1,4 +1,22 @@
-<script setup></script>
+<script setup>
+import { onMounted } from 'vue';
+import Pop from '../utils/Pop.js';
+import { cultsService } from '../services/CultsService.js';
+
+async function getCults() {
+  try {
+    await cultsService.getCults()
+  } catch (error) {
+    Pop.error(error)
+  }
+}
+
+
+onMounted(() => {
+  getCults()
+})
+
+</script>
 
 
 <template>
