@@ -20,7 +20,7 @@ CREATE TABLE
     coverImg VARCHAR(1000) NOT NULL,
     leaderId VARCHAR(255) NOT NULL,
     FOREIGN KEY (leaderId) REFERENCES accounts (id) ON DELETE CASCADE,
-    UNIQUE (name)
+    UNIQUE (name) -- Cults cannot have the same name
   );
 
 INSERT INTO
