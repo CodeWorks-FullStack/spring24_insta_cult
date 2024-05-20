@@ -41,5 +41,21 @@ public class CultsController : ControllerBase
     }
   }
 
+  [Authorize]
+  [HttpPost]
+  public async Task<ActionResult<Cult>> CreateCult([FromBody] Cult cultData)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      cultData.LeaderId = userInfo.Id;
+      Cult cult = _cultsService.CreateCult(cultData);
+      return Ok(cult);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 
 }

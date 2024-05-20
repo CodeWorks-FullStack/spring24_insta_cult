@@ -19,12 +19,20 @@ CREATE TABLE
     description VARCHAR(10000) NOT NULL,
     coverImg VARCHAR(1000) NOT NULL,
     leaderId VARCHAR(255) NOT NULL,
-    FOREIGN KEY (leaderId) REFERENCES accounts (id) ON DELETE CASCADE
+    FOREIGN KEY (leaderId) REFERENCES accounts (id) ON DELETE CASCADE,
+    UNIQUE (name)
   );
 
 INSERT INTO
   cults (name, fee, description, coverImg, leaderId)
 VALUES
+  (
+    "Jeremy's nasty little goblins",
+    0,
+    "Goblin around the fire, collect jewels",
+    "https://images.unsplash.com/photo-1533575770077-052fa2c609fc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGZpcmVwaXR8ZW58MHx8MHx8fDA%3D",
+    "65f87bc1e02f1ee243874743"
+  ),
   (
     "Bad dudes",
     1000,
@@ -32,6 +40,8 @@ VALUES
     "https://images.unsplash.com/photo-1512209840695-c9b154d2a2aa?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z29ibGlufGVufDB8fDB8fHww",
     "6632ba3d2f68638590fa2dbf"
   );
+
+DROP TABLE cults;
 
 SELECT
   *

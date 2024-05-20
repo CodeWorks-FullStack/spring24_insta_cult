@@ -11,6 +11,12 @@ public class CultsService
     _repository = repository;
   }
 
+  internal Cult CreateCult(Cult cultData)
+  {
+    Cult cult = _repository.CreateCult(cultData);
+    return cult;
+  }
+
   internal List<Cult> GetAllCults()
   {
     List<Cult> cults = _repository.GetAllCults();

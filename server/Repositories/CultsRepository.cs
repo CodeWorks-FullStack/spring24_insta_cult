@@ -1,5 +1,6 @@
 
 
+
 namespace insta_cult.Repositories;
 
 public class CultsRepository
@@ -42,6 +43,25 @@ public class CultsRepository
     WHERE cults.id = @cultId;";
     //                                                                  {cultId: 7}
     Cult cult = _db.Query<Cult, Profile, Cult>(sql, PopulateLeader, new { cultId }).FirstOrDefault();
+
+    return cult;
+  }
+
+  internal Cult CreateCult(Cult cultData)
+  {
+    string sql = @"
+    INSERT INTO
+    cults(name, fee, description, coverImg, leaderId)
+    VALUES(@Name, @Fee, @Description, @CoverImg, @LeaderId);
+
+    SELECT
+    cults.*,
+    accounts.*
+    FROM cults
+    JOIN accounts ON accounts.id = cults.leaderId
+    WHERE cults.id = LAST_INSERT_ID();";
+
+    Cult cult = _db.Query<Cult, Profile, Cult>(sql, PopulateLeader, cultData).FirstOrDefault();
 
     return cult;
   }
