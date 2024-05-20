@@ -1,3 +1,4 @@
+
 namespace insta_cult.Services;
 
 public class CultsService
@@ -7,5 +8,11 @@ public class CultsService
   public CultsService(CultsRepository repository)
   {
     _repository = repository;
+  }
+
+  internal List<Cult> GetAllCults()
+  {
+    List<Cult> cults = _repository.GetAllCults();
+    return cults;
   }
 }

@@ -12,4 +12,18 @@ public class CultsController : ControllerBase
     _cultsService = cultsService;
     _auth0Provider = auth0Provider;
   }
+
+  [HttpGet]
+  public ActionResult<List<Cult>> GetAllCults()
+  {
+    try
+    {
+      List<Cult> cults = _cultsService.GetAllCults();
+      return Ok(cults);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
 }
