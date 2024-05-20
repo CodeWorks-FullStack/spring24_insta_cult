@@ -3,7 +3,7 @@ import { Profile } from "./Profile.js";
 
 export class Cult extends DatabaseItem {
   constructor(data) {
-    super(data)
+    super(data) //calls constructor on DataBaseItem
 
     // id, createdAt, updatedAt inherited from DatabaseItem
 
