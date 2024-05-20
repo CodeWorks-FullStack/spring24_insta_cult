@@ -24,6 +24,7 @@ import Navbar from './components/Navbar.vue'
 
 :root {
   --main-height: calc(100vh - 32px - 64px);
+  --dark-gray: #1A1919;
 }
 
 
