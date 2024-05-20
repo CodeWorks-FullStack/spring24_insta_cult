@@ -19,7 +19,9 @@ defineProps({
       <!-- FIXME truncate text -->
       <p>{{ cult.description }}</p>
       <div class="text-end">
-        <button class="btn btn-danger">See More</button>
+        <RouterLink :to="{ name: 'Cult Details', params: { cultId: cult.id } }">
+          <button class="btn btn-danger">See More</button>
+        </RouterLink>
       </div>
     </div>
   </div>
