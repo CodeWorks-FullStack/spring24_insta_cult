@@ -5,8 +5,10 @@ import { api } from "./AxiosService.js"
 
 class CultsService {
   async getCultById(cultId) {
+    AppState.activeCult = null
     const res = await api.get(`api/cults/${cultId}`)
     logger.log('GOT CULT BY ID 💀', res.data)
+    AppState.activeCult = new Cult(res.data)
   }
   async getCults() {
     const res = await api.get('api/cults')
