@@ -28,6 +28,7 @@ onMounted(() => {
 
 
 <template>
+  <!-- FIXME style this up a little better -->
   <div v-if="cult" class="container-fluid">
     <section class="row cult-hero align-items-center">
       <div class="col-12 cult-name">
