@@ -1,4 +1,5 @@
 
+
 namespace insta_cult.Services;
 
 public class CultsService
@@ -14,5 +15,17 @@ public class CultsService
   {
     List<Cult> cults = _repository.GetAllCults();
     return cults;
+  }
+
+  internal Cult GetCultById(int cultId)
+  {
+    Cult cult = _repository.GetCultById(cultId);
+
+    if (cult == null)
+    {
+      throw new Exception($"Invalid cult id: {cultId}");
+    }
+
+    return cult;
   }
 }

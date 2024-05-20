@@ -26,4 +26,20 @@ public class CultsController : ControllerBase
       return BadRequest(exception.Message);
     }
   }
+
+  [HttpGet("{cultId}")]
+  public ActionResult<Cult> GetCultById(int cultId)
+  {
+    try
+    {
+      Cult cult = _cultsService.GetCultById(cultId);
+      return Ok(cult);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
+
 }
