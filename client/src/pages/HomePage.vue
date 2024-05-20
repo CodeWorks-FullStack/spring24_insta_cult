@@ -6,11 +6,15 @@
   <div class="container-fluid">
     <section class="row">
       <div class="col-12 text-center">
-        <button class="btn btn-outline-danger me-3 fs-2 w-25">
-          <span>
-            Join a cult?
-          </span>
-        </button>
+
+        <RouterLink :to="{ name: 'Cults' }">
+          <button class="btn btn-outline-danger me-3 fs-2 w-25">
+            <span>
+              Join a cult?
+            </span>
+          </button>
+        </RouterLink>
+
         <button class="btn btn-outline-danger ms-3 fs-2 w-25">
           <span>
             Start a cult?
