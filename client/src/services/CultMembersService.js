@@ -8,6 +8,7 @@ class CultMembersService {
     const cultMemberData = { cultId: cultId }
     const res = await api.post('api/cultMembers', cultMemberData)
     logger.log('CREATED CULT MEMBER ✨🧙', res.data)
+    AppState.cultists.push(new Cultist(res.data))
   }
   async getCultistsByCultId(cultId) {
     AppState.cultists.length = 0 // empties array
