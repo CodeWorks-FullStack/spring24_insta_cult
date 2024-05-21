@@ -119,8 +119,8 @@ onMounted(() => {
           <div v-for="cultist in cultists" :key="cultist.cultMemberId" class="position-relative">
             <ProfileImageCircle :profile="cultist" />
             <span @click="destroyCultMember(cultist.cultMemberId)" v-if="account?.id == cult.leaderId"
-              class="bg-danger rounded" role="button" :title="`Excommunicate ${cultist.name} from ${cult.name}`">
-              <i class="mdi mdi-close"></i>
+              class="text-danger" role="button" :title="`Excommunicate ${cultist.name} from ${cult.name}`">
+              <i class="mdi mdi-close-circle"></i>
             </span>
           </div>
         </div>
@@ -164,5 +164,9 @@ h1 {
     top: 0;
     right: 0;
   }
+}
+
+.mdi-close-circle {
+  text-shadow: 1px 1px 2px black;
 }
 </style>
