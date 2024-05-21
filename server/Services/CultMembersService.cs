@@ -12,9 +12,9 @@ public class CultMembersService
     _repository = repository;
   }
 
-  internal Profile CreateCultMember(CultMember cultMemberData)
+  internal Cultist CreateCultMember(CultMember cultMemberData)
   {
-    Profile cultist = _repository.CreateCultMember(cultMemberData);
+    Cultist cultist = _repository.CreateCultMember(cultMemberData);
     return cultist;
   }
 }

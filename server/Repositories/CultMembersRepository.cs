@@ -13,7 +13,7 @@ public class CultMembersRepository
     _db = db;
   }
 
-  internal Profile CreateCultMember(CultMember cultMemberData)
+  internal Cultist CreateCultMember(CultMember cultMemberData)
   {
     string sql = @"
     INSERT INTO
@@ -27,8 +27,10 @@ public class CultMembersRepository
     JOIN accounts ON accounts.id = cultMembers.accountId 
     WHERE cultMembers.id = LAST_INSERT_ID();";
 
-    Profile cultist = _db.Query<CultMember, Profile, Profile>(sql, (cultMember, profile) =>
+    Cultist cultist = _db.Query<CultMember, Cultist, Cultist>(sql, (cultMember, profile) =>
     {
+      profile.CultMemberId = cultMember.Id;
+      profile.CultId = cultMember.CultId;
       return profile;
     }, cultMemberData).FirstOrDefault();
     return cultist;

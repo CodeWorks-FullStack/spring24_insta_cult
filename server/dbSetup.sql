@@ -65,7 +65,18 @@ CREATE TABLE
     UNIQUE (accountId, cultId) -- I can only join each cult once
   );
 
+DROP TABLE cultMembers;
+
 INSERT INTO
   cultMembers (cultId, accountId)
 VALUES
   (2, '65f87bc1e02f1ee243874743');
+
+SELECT
+  cultMembers.*,
+  accounts.*
+FROM
+  cultMembers
+  JOIN accounts ON accounts.id = cultMembers.accountId
+WHERE
+  cultMembers.id = 1;
