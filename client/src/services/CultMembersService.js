@@ -5,7 +5,7 @@ import { api } from "./AxiosService.js"
 
 class CultMembersService {
   async createCultMember(cultId) {
-    const cultMemberData = { cultId: cultId }
+    const cultMemberData = { cultId: cultId } // {cultId: 5}
     const res = await api.post('api/cultMembers', cultMemberData)
     logger.log('CREATED CULT MEMBER ✨🧙', res.data)
     AppState.cultists.push(new Cultist(res.data))
