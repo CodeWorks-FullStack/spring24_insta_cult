@@ -9,6 +9,8 @@ import { cultMembersService } from '../services/CultMembersService.js';
 
 const cult = computed(() => AppState.activeCult)
 
+const cultists = computed(() => AppState.cultists)
+
 const cultBackgroundImage = computed(() => `url(${cult.value?.coverImg})`)
 
 const route = useRoute()
@@ -50,8 +52,12 @@ onMounted(() => {
         <p>{{ cult.description }}</p>
       </div>
       <div class="col-12 col-md-6 p-3">
-        <h2>Cult Leader</h2>
+        <h2>Leader</h2>
         <p>{{ cult.leader.name }}</p>
+        <h3>Members</h3>
+        <p v-for="cultist in cultists" :key="cultist.cultMemberId">
+          {{ cultist.name }}
+        </p>
       </div>
     </section>
   </div>
