@@ -49,7 +49,7 @@ public class CultMembersService
 
     _repository.DestroyCultMember(cultMemberId);
 
-    return $"Removed cultist from {cult.Name};";
+    return $"Removed cultist from {cult.Name}!";
   }
 
   internal List<Cultist> GetCultistsByCultId(int cultId)

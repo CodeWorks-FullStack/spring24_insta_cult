@@ -4,6 +4,17 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class CultMembersService {
+  async destroyCultMember(cultMemberId) {
+    const res = await api.delete(`api/cultMembers/${cultMemberId}`)
+    logger.log('DESTROYED CULT MEMBER ❌🧙‍♂️', res.data)
+    const cultistIndex = AppState.cultists.findIndex(cultist => cultist.cultMemberId == cultMemberId)
+
+    if (cultistIndex == -1) {
+      throw new Error("You probably messed up your findIndex, bud")
+    }
+
+    AppState.cultists.splice(cultistIndex, 1)
+  }
   async createCultMember(cultId) {
     const cultMemberData = { cultId: cultId } // {cultId: 5}
     const res = await api.post('api/cultMembers', cultMemberData)
