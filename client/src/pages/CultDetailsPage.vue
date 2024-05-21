@@ -16,10 +16,14 @@ const account = computed(() => AppState.account)
 
 const cultBackgroundImage = computed(() => `url(${cult.value?.coverImg})`)
 
+// .some is an array method that will return true if the callback function ever evaluats as true, or return false otherwise
+// does the Account Id match any of the Cultist's Ids?
 const isCultist = computed(() => AppState.cultists.some(cultist => cultist.id == AppState.account?.id))
 
+// route information
 const route = useRoute()
 
+// route navigation
 const router = useRouter()
 
 async function getCultById() {
