@@ -83,7 +83,7 @@ onMounted(() => {
       <div class="col-12 col-md-6 p-3">
         <h2>Leader</h2>
         <ProfileImageCircle :profile="cult.leader" />
-        <h3>Members</h3>
+        <h3>Members: {{ cultists.length }}</h3>
         <div class="d-flex gap-2">
           <div v-for="cultist in cultists" :key="cultist.cultMemberId" class="position-relative">
 
