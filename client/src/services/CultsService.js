@@ -1,10 +1,14 @@
-import App from "../App.vue"
 import { AppState } from "../AppState.js"
 import { Cult } from "../models/Cult.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class CultsService {
+  async createCult(cultData) {
+    const res = await api.post('api/cults', cultData)
+    logger.log('CREATED CULT 💀', res.data)
+    // No need to push into AppState, since we can only create on a page that doesn't access any data from AppState
+  }
   async destroyCult(cultId) {
     const res = await api.delete(`api/cults/${cultId}`)
     logger.log("DELETE CULT ❌", res.data)

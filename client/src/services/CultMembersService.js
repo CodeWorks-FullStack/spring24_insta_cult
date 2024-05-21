@@ -4,10 +4,7 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class CultMembersService {
-  async createCult(cultData) {
-    const res = await api.post('api/cults', cultData)
-    logger.log('CREATED CULT 💀', res.data)
-  }
+
   async destroyCultMember(cultMemberId) {
     const res = await api.delete(`api/cultMembers/${cultMemberId}`)
     logger.log('DESTROYED CULT MEMBER ❌🧙‍♂️', res.data)
@@ -26,7 +23,7 @@ class CultMembersService {
     AppState.cultists.push(new Cultist(res.data))
   }
   async getCultistsByCultId(cultId) {
-    AppState.cultists.length = 0 // empties array
+    AppState.cultists.length = 0 // empties array, same as: AppState.cultists = []
     const res = await api.get(`api/cults/${cultId}/cultMembers`)
     logger.log('GOT CULTISTS 🧙‍♂️🧙', res.data)
     AppState.cultists = res.data.map(pojo => new Cultist(pojo))

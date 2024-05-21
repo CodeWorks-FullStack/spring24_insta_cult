@@ -1,8 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 import Pop from '../utils/Pop.js';
-import { cultMembersService } from '../services/CultMembersService.js'
 import { Modal } from 'bootstrap';
+import { cultsService } from '../services/CultsService.js';
 
 const cultFormData = ref({
   name: '',
@@ -13,7 +13,7 @@ const cultFormData = ref({
 
 async function createCult() {
   try {
-    await cultMembersService.createCult(cultFormData.value)
+    await cultsService.createCult(cultFormData.value)
 
     cultFormData.value = {
       name: '',
