@@ -4,6 +4,10 @@ import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
 
 class CultMembersService {
+  async createCult(cultData) {
+    const res = await api.post('api/cults', cultData)
+    logger.log('CREATED CULT 💀', res.data)
+  }
   async destroyCultMember(cultMemberId) {
     const res = await api.delete(`api/cultMembers/${cultMemberId}`)
     logger.log('DESTROYED CULT MEMBER ❌🧙‍♂️', res.data)
