@@ -15,6 +15,7 @@ async function createCult() {
   try {
     await cultsService.createCult(cultFormData.value)
 
+    // clears form
     cultFormData.value = {
       name: '',
       description: '',
@@ -22,6 +23,7 @@ async function createCult() {
       coverImg: ''
     }
 
+    // closes modal
     Modal.getOrCreateInstance('#createCultModal').hide()
   } catch (error) {
     Pop.error(error)
