@@ -3,6 +3,8 @@
 
 
 
+
+
 namespace insta_cult.Repositories;
 
 public class CultMembersRepository
@@ -37,6 +39,13 @@ public class CultMembersRepository
     return cultist;
   }
 
+  internal void DestroyCultMember(int cultMemberId)
+  {
+    string sql = "DELETE FROM cultMembers WHERE id = @cultMemberId LIMIT 1;";
+
+    _db.Execute(sql, new { cultMemberId });
+  }
+
   internal List<Cultist> GetCultistsByCultId(int cultId)
   {
     string sql = @"
@@ -55,5 +64,14 @@ public class CultMembersRepository
     }, new { cultId }).ToList();
 
     return cultists;
+  }
+
+  internal CultMember GetCultMemberById(int cultMemberId)
+  {
+    string sql = "SELECT * FROM cultMembers WHERE id = @cultMemberId;";
+
+    CultMember cultMember = _db.Query<CultMember>(sql, new { cultMemberId }).FirstOrDefault();
+
+    return cultMember;
   }
 }
