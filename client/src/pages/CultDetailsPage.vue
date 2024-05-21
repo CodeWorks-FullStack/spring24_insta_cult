@@ -53,11 +53,13 @@ onMounted(() => {
       </div>
       <div class="col-12 col-md-6 p-3">
         <h2>Leader</h2>
-        <p>{{ cult.leader.name }}</p>
+        <ProfileImageCircle :profile="cult.leader" />
         <h3>Members</h3>
-        <p v-for="cultist in cultists" :key="cultist.cultMemberId">
-          {{ cultist.name }}
-        </p>
+        <div class="d-flex gap-2">
+          <div v-for="cultist in cultists" :key="cultist.cultMemberId">
+            <ProfileImageCircle :profile="cultist" />
+          </div>
+        </div>
       </div>
     </section>
   </div>

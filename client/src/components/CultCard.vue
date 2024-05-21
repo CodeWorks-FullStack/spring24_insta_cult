@@ -10,7 +10,7 @@ defineProps({
 <template>
   <div class="cult-card">
     <div class="d-flex align-items-center gap-3 p-4">
-      <img :src="cult.leader.picture" :alt="cult.leader.name" class="profile-picture">
+      <ProfileImageCircle :profile="cult.leader" />
       <p class="fs-2 mb-0">{{ cult.leader.name }}</p>
     </div>
     <img :src="cult.coverImg" :alt="cult.name" class="cult-img">
@@ -33,16 +33,9 @@ defineProps({
   background-color: #3F3B3B;
 }
 
-.profile-picture {
-  height: 10vh;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-}
-
 .cult-img {
   width: 100%;
   height: 40vh;
   object-fit: cover;
-
 }
 </style>
