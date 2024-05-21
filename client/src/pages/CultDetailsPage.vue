@@ -2,7 +2,7 @@
 import { computed, onMounted } from 'vue';
 import Pop from '../utils/Pop.js';
 import { cultsService } from '../services/CultsService.js';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { AppState } from '../AppState.js';
 import LoadingComponent from '../components/LoadingComponent.vue';
 import { cultMembersService } from '../services/CultMembersService.js';
@@ -19,6 +19,8 @@ const cultBackgroundImage = computed(() => `url(${cult.value?.coverImg})`)
 const isCultist = computed(() => AppState.cultists.some(cultist => cultist.id == AppState.account?.id))
 
 const route = useRoute()
+
+const router = useRouter()
 
 async function getCultById() {
   try {
@@ -56,6 +58,21 @@ async function destroyCultMember(cultMemberId) {
   }
 }
 
+async function destroyCult(cultId) {
+  try {
+    const wantsToDestroy = await Pop.confirm("Are you sure you want to delete this cult?")
+
+    if (!wantsToDestroy) { return }
+
+    await cultsService.destroyCult(cultId)
+
+    router.push({ name: 'Home' })
+  }
+  catch (error) {
+    Pop.error(error);
+  }
+}
+
 
 onMounted(() => {
   getCultById()
@@ -69,7 +86,13 @@ onMounted(() => {
   <div v-if="cult" class="container-fluid">
     <section class="row cult-hero align-items-center">
       <div class="col-12 cult-name">
-        <h1>{{ cult.name }}</h1>
+        <h1>
+          {{ cult.name }}
+          <button @click="destroyCult(cult.id)" v-if="account?.id == cult.leaderId" class="btn btn-danger"
+            type="button">
+            Delete Cult
+          </button>
+        </h1>
         <button @click="createCultMember(cult.id)" v-if="account && !isCultist" class="btn btn-dark text-danger"
           type="button">
           JOIN

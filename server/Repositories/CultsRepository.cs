@@ -1,6 +1,7 @@
 
 
 
+
 namespace insta_cult.Repositories;
 
 public class CultsRepository
@@ -64,5 +65,12 @@ public class CultsRepository
     Cult cult = _db.Query<Cult, Profile, Cult>(sql, PopulateLeader, cultData).FirstOrDefault();
 
     return cult;
+  }
+
+  internal void DestroyCult(int cultId)
+  {
+    string sql = "DELETE FROM cults WHERE id = @cultId LIMIT 1;";
+
+    _db.Execute(sql, new { cultId });
   }
 }

@@ -74,4 +74,20 @@ public class CultsController : ControllerBase
     }
   }
 
+  [HttpDelete("{cultId}")]
+  [Authorize]
+  public async Task<ActionResult<string>> DestroyCult(int cultId)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      _cultsService.DestroyCult(cultId, userInfo.Id);
+      return Ok("Cult was destroyed!");
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
 }

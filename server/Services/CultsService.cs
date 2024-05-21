@@ -17,6 +17,18 @@ public class CultsService
     return cult;
   }
 
+  internal void DestroyCult(int cultId, string userId)
+  {
+    Cult cult = GetCultById(cultId);
+
+    if (cult.LeaderId != userId)
+    {
+      throw new Exception("NOT YOUR CULT");
+    }
+
+    _repository.DestroyCult(cultId);
+  }
+
   internal List<Cult> GetAllCults()
   {
     List<Cult> cults = _repository.GetAllCults();
