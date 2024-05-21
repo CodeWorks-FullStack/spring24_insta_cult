@@ -34,6 +34,7 @@ public class CultMembersService
     return cultMember;
   }
 
+  // NOTE only the leader of a cult can remove cultMembers, might not be a great reference for everything
   internal string DestroyCultMember(int cultMemberId, string userId)
   {
     // FIXME change this to cultist if you have time

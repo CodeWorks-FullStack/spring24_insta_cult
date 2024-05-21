@@ -5,6 +5,7 @@ import { cultsService } from '../services/CultsService.js';
 import { useRoute } from 'vue-router';
 import { AppState } from '../AppState.js';
 import LoadingComponent from '../components/LoadingComponent.vue';
+import { cultMembersService } from '../services/CultMembersService.js';
 
 const cult = computed(() => AppState.activeCult)
 
@@ -20,9 +21,18 @@ async function getCultById() {
   }
 }
 
+async function getCultistsByCultId() {
+  try {
+    await cultMembersService.getCultistsByCultId(route.params.cultId)
+  } catch (error) {
+    Pop.error(error)
+  }
+}
+
 
 onMounted(() => {
   getCultById()
+  getCultistsByCultId()
 })
 </script>
 
