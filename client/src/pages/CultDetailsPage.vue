@@ -66,6 +66,7 @@ async function destroyCult(cultId) {
 
     await cultsService.destroyCult(cultId)
 
+    // NOTE returns the user to the home page
     router.push({ name: 'Home' })
   }
   catch (error) {
@@ -82,8 +83,8 @@ onMounted(() => {
 
 
 <template>
-  <!-- FIXME style this up a little better -->
   <div v-if="cult" class="container-fluid">
+
     <section class="row cult-hero align-items-center">
       <div class="col-12 cult-name">
         <h1>
@@ -99,28 +100,30 @@ onMounted(() => {
         </button>
       </div>
     </section>
+
     <section class="row">
+
       <div class="col-12 col-md-6 p-3">
         <p>{{ cult.description }}</p>
       </div>
+
       <div class="col-12 col-md-6 p-3">
         <h2>Leader</h2>
         <ProfileImageCircle :profile="cult.leader" />
         <h3>Members: {{ cultists.length }}</h3>
         <div class="d-flex gap-2">
           <div v-for="cultist in cultists" :key="cultist.cultMemberId" class="position-relative">
-
             <ProfileImageCircle :profile="cultist" />
-
             <span @click="destroyCultMember(cultist.cultMemberId)" v-if="account?.id == cult.leaderId"
               class="bg-danger rounded" role="button" :title="`Excommunicate ${cultist.name} from ${cult.name}`">
               <i class="mdi mdi-close"></i>
             </span>
-
           </div>
         </div>
       </div>
+
     </section>
+
   </div>
 
   <div v-else class="container-fluid">

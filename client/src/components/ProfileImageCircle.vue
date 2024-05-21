@@ -1,8 +1,10 @@
 <script setup>
+import { Cultist } from '../models/Cultist.js';
 import { Profile } from '../models/Profile.js';
 
 defineProps({
-  profile: { type: Profile, required: true }
+  // NOTE type for profile prop can be a Profile or a Cultist
+  profile: { type: [Profile, Cultist], required: true }
 })
 </script>
 

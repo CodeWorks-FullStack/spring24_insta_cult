@@ -1,5 +1,6 @@
 <script setup>
 import { Cult } from '../models/Cult.js';
+import ProfileImageCircle from './ProfileImageCircle.vue';
 
 defineProps({
   cult: { type: Cult, required: true }
@@ -16,7 +17,6 @@ defineProps({
     <img :src="cult.coverImg" :alt="cult.name" class="cult-img">
     <div class="p-4">
       <p class="fs-3">{{ cult.name }}</p>
-      <!-- FIXME truncate text -->
       <p>{{ cult.description }}</p>
       <div class="text-end">
         <RouterLink :to="{ name: 'Cult Details', params: { cultId: cult.id } }">
