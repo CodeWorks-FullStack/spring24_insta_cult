@@ -52,3 +52,20 @@ SELECT
   *
 FROM
   cults;
+
+CREATE TABLE
+  cultMembers (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    cultId INT NOT NULL,
+    accountId VARCHAR(255) NOT NULL,
+    FOREIGN KEY (cultId) REFERENCES cults (id) ON DELETE CASCADE,
+    FOREIGN KEY (accountId) REFERENCES accounts (id) ON DELETE CASCADE,
+    UNIQUE (accountId, cultId) -- I can only join each cult once
+  );
+
+INSERT INTO
+  cultMembers (cultId, accountId)
+VALUES
+  (2, '65f87bc1e02f1ee243874743');
