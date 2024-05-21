@@ -1,5 +1,8 @@
 <script setup>
+import { computed } from 'vue';
+import { AppState } from '../AppState.js';
 
+const account = computed(() => AppState.account)
 </script>
 
 <template>
@@ -16,7 +19,8 @@
         </RouterLink>
 
         <!-- TODO have this button open our form modal -->
-        <button class="btn btn-outline-danger ms-3 fs-2 w-25">
+        <button v-if="account" class="btn btn-outline-danger ms-3 fs-2 w-25" data-bs-toggle="modal"
+          data-bs-target="#createCultModal">
           <span>
             Start a cult?
           </span>
@@ -24,6 +28,8 @@
       </div>
     </section>
   </div>
+
+  <ModalComponent />
 </template>
 
 <style scoped lang="scss">
