@@ -13,16 +13,24 @@ public class CultMembersRepository
     _db = db;
   }
 
-  internal CultMember CreateCultMember(CultMember cultMemberData)
+  internal Profile CreateCultMember(CultMember cultMemberData)
   {
     string sql = @"
     INSERT INTO
     cultMembers(cultId, accountId)
     VALUES(@CultId, @AccountId);
 
-    SELECT * FROM cultMembers WHERE id = LAST_INSERT_ID();";
+    SELECT 
+    cultMembers.*,
+    accounts.*
+    FROM cultMembers
+    JOIN accounts ON accounts.id = cultMembers.accountId 
+    WHERE cultMembers.id = LAST_INSERT_ID();";
 
-    CultMember cultMember = _db.Query<CultMember>(sql, cultMemberData).FirstOrDefault();
-    return cultMember;
+    Profile cultist = _db.Query<CultMember, Profile, Profile>(sql, (cultMember, profile) =>
+    {
+      return profile;
+    }, cultMemberData).FirstOrDefault();
+    return cultist;
   }
 }
