@@ -11,6 +11,8 @@ const cult = computed(() => AppState.activeCult)
 
 const cultists = computed(() => AppState.cultists)
 
+const account = computed(() => AppState.account)
+
 const cultBackgroundImage = computed(() => `url(${cult.value?.coverImg})`)
 
 const route = useRoute()
@@ -31,6 +33,14 @@ async function getCultistsByCultId() {
   }
 }
 
+async function createCultMember(cultId) {
+  try {
+    await cultMembersService.createCultMember(cultId)
+  } catch (error) {
+    Pop.error(error)
+  }
+}
+
 
 onMounted(() => {
   getCultById()
@@ -45,6 +55,9 @@ onMounted(() => {
     <section class="row cult-hero align-items-center">
       <div class="col-12 cult-name">
         <h1>{{ cult.name }}</h1>
+        <button @click="createCultMember(cult.id)" v-if="account" class="btn btn-dark text-danger" type="button">
+          JOIN
+        </button>
       </div>
     </section>
     <section class="row">

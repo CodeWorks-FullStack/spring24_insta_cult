@@ -3,17 +3,11 @@ import { onMounted, ref } from 'vue';
 import { loadState, saveState } from '../utils/Store.js';
 import Login from './Login.vue';
 
-const theme = ref(loadState('theme') || 'light')
+const theme = ref('dark')
 
 onMounted(() => {
   document.documentElement.setAttribute('data-bs-theme', theme.value)
 })
-
-function toggleTheme() {
-  theme.value = theme.value == 'light' ? 'dark' : 'light'
-  document.documentElement.setAttribute('data-bs-theme', theme.value)
-  saveState('theme', theme.value)
-}
 
 </script>
 
@@ -30,12 +24,6 @@ function toggleTheme() {
       <ul class="navbar-nav me-auto">
       </ul>
       <!-- LOGIN COMPONENT HERE -->
-      <div>
-        <button class="btn text-light" @click="toggleTheme"
-          :title="`Enable ${theme == 'light' ? 'dark' : 'light'} theme.`">
-          <i class="mdi" :class="theme == 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"></i>
-        </button>
-      </div>
       <Login />
     </div>
   </nav>
