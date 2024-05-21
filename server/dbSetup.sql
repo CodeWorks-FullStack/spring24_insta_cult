@@ -70,7 +70,7 @@ DROP TABLE cultMembers;
 INSERT INTO
   cultMembers (cultId, accountId)
 VALUES
-  (2, '65f87bc1e02f1ee243874743');
+  (6, '6632ba3d2f68638590fa2dbf');
 
 SELECT
   cultMembers.*,

@@ -1,6 +1,7 @@
 
 
 
+
 namespace insta_cult.Services;
 
 public class CultMembersService
@@ -16,5 +17,11 @@ public class CultMembersService
   {
     Cultist cultist = _repository.CreateCultMember(cultMemberData);
     return cultist;
+  }
+
+  internal List<Cultist> GetCultistsByCultId(int cultId)
+  {
+    List<Cultist> cultists = _repository.GetCultistsByCultId(cultId);
+    return cultists;
   }
 }
